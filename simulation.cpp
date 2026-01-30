@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <vector>
+#include <chrono>
 #include "particle.h"
 
 int main(int argc, char *argv[])
@@ -24,6 +25,8 @@ int main(int argc, char *argv[])
             return 1;
         }
 
+        auto start = std::chrono::high_resolution_clock::now();
+
         std::vector<Particle> particles = Particle::readParticles("solar.tsv");
         for (int s = 0; s < steps; s++)
         {
@@ -41,7 +44,11 @@ int main(int argc, char *argv[])
                 logFile << "\n";
             }
         }
+        auto end = std::chrono::high_resolution_clock::now();
 
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+
+        std::cout << "Simulation took " << duration.count() << " microseconds." << std::endl;
         logFile.close();
     }
     else if (argc == 5)
@@ -72,6 +79,8 @@ int main(int argc, char *argv[])
                 p.initParticleRandom();
                 particles.push_back(p);
             }
+            auto start = std::chrono::high_resolution_clock::now();
+
             for (int s = 0; s < steps; s++)
             {
                 for (size_t i = 0; i < particles.size(); ++i)
@@ -91,7 +100,12 @@ int main(int argc, char *argv[])
                     }
                 }
             }
-            std::cout << "Simulation complete" << std::endl;
+            auto end = std::chrono::high_resolution_clock::now();
+
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+
+            std::cout << "Simulation took " << duration.count() << " microseconds." << std::endl;
+            logFile.close();
             return 0;
         }
     }
