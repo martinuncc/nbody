@@ -88,16 +88,16 @@ int main(int argc, char *argv[])
                     for (size_t j = i + 1; j < particles.size(); ++j)
                     {
                         Particle::calculateState(particles[i], particles[j], timestep);
-                        if (dumpState && (j % dumpState == 0))
-                        {
-                            logFile << particles.size() << "\t";
-                            for (const auto &p : particles)
-                            {
-                                logFile << p.mass << "\t" << p.x << "\t" << p.y << "\t" << p.z << "\t" << p.vx << "\t" << p.vy << "\t" << p.vz << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << "\t";
-                            }
-                            logFile << "\n";
-                        }
                     }
+                }
+                if (dumpState && (s % dumpState == 0))
+                {
+                    logFile << particles.size() << "\t";
+                    for (const auto &p : particles)
+                    {
+                        logFile << p.mass << "\t" << p.x << "\t" << p.y << "\t" << p.z << "\t" << p.vx << "\t" << p.vy << "\t" << p.vz << "\t" << p.fx << "\t" << p.fy << "\t" << p.fz << "\t";
+                    }
+                    logFile << "\n";
                 }
             }
             auto end = std::chrono::high_resolution_clock::now();
