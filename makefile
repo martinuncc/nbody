@@ -19,6 +19,6 @@ clean:
 	rm -f $(TARGET) $(OBJECTS) log.tsv
 
 run: $(TARGET)
-	./$(TARGET) 200 5000000 5000 <<< "log.tsv"
+	echo "log.tsv" | ./$(TARGET) 200 5000000 5000
 
 .PHONY: all clean run
