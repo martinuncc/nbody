@@ -13,6 +13,6 @@ you would like before the timestep size argument (./executable 30 .01 20 5)
 
 Simulation Benchmark:
 
-100 particles dt=1 for 10000 steps: 9980428 microseconds
+100 particles dt=1 for 10000 steps: 46587285 microseconds
 1000 particles dt=1 for 10000 steps: 1005802831 microseconds
 Solar system with dt = 200 and for 5000000 steps: 2396702143 microseconds
