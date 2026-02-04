@@ -16,7 +16,7 @@ simulation.o: simulation.cpp particle.h
 	$(CXX) $(CXXFLAGS) -c simulation.cpp -o simulation.o
 
 clean:
-	rm -f $(TARGET) $(OBJECTS) *.tsv
+	rm -f $(TARGET) $(OBJECTS) log.tsv
 
 run: $(TARGET)
 	./$(TARGET) 200 5000000 5000 <<< "log.tsv"
