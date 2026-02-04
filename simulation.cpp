@@ -36,6 +36,9 @@ int main(int argc, char *argv[])
                 {
                     Particle::calculateState(particles[i], particles[j], timestep);
                 }
+            }
+            if (dumpState && (s % dumpState == 0))
+            {
                 logFile << particles.size() << "\t";
                 for (const auto &p : particles)
                 {
